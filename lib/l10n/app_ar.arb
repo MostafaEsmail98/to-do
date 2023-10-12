@@ -1,0 +1,14 @@
+{
+  "todolist": "قائمة المهام",
+  "selectTime": "تحديد الوقت",
+  "addTask": "اضافة المهمة",
+  "language": "اللغة",
+  "theme": "السمات",
+  "light":"فاتح",
+  "dark": "داكن",
+  "settings": "الاعدادات",
+  "titleTask": "عنوان المهمة",
+  "addNewTask": "اضافة مهمة جديدة",
+  "enterYourTask": "ادخل مهمتك"
+
+}

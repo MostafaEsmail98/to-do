@@ -1,0 +1,14 @@
+{
+  "todolist": "To Do List",
+  "selectTime": "Select Time",
+  "addTask": "Add Task",
+  "language": "Languege",
+  "theme": "Theming",
+  "light":"Light",
+  "dark": "Dark",
+  "settings": "Settings",
+  "titleTask": "Title Task",
+  "addNewTask": "Add New Task",
+  "enterYourTask": "Enter Your Task"
+
+}
