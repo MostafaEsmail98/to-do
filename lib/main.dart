@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do/layout/home.dart';
 import 'package:to_do/provider/my_provider.dart';
+import 'package:to_do/screens/tasks/editTask.dart';
 import 'package:to_do/sherad/sharedPrefs/shared_prefs.dart';
 import 'package:to_do/styles/my_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         initialRoute: Home.routeName,
         routes: {
           Home.routeName: (context) => Home(),
+          EditTask.routeName:(context) => EditTask()
         },
       ),
     );

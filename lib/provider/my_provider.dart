@@ -8,6 +8,7 @@ import '../sherad/sharedPrefs/shared_prefs.dart';
 class MyProvider extends ChangeNotifier{
   String Language = "en";
   ThemeMode mode = ThemeMode.light;
+  DateTime selectDay= DateTime.now();
 
   void inti()async{
     String? lang=SharedPrefs.getLang();
@@ -33,6 +34,10 @@ class MyProvider extends ChangeNotifier{
     }else{
       SharedPrefs.setTheme("dark");
     }
+    notifyListeners();
+  }
+  void changeData(DateTime Data){
+    selectDay=Data;
     notifyListeners();
   }
 }

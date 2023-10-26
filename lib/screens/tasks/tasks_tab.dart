@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do/provider/my_provider.dart';
 import 'package:to_do/screens/tasks/task_item.dart';
+import 'package:to_do/sherad/firebase_function.dart';
 
 class TasksTab extends StatelessWidget {
   const TasksTab({super.key});
@@ -20,10 +21,12 @@ class TasksTab extends StatelessWidget {
                 height: 40.h,
                 color: Theme.of(context).colorScheme.primary),
             CalendarTimeline(
-              initialDate: DateTime.now(),
+              initialDate: pro.selectDay,
               firstDate: DateTime.now().subtract(Duration(days: 365)),
               lastDate: DateTime.now().add(Duration(days: 365)),
-              onDateSelected: (date) => print(date),
+              onDateSelected: (date) {
+                pro.changeData(date);
+              },
               leftMargin: 20,
               monthColor:
                   pro.mode == ThemeMode.light ? Colors.black : Colors.white,
@@ -36,12 +39,28 @@ class TasksTab extends StatelessWidget {
             ),
           ],
         ),
-        Expanded(
-          child: ListView.builder(
-            itemBuilder: (context, index) {
-              return TaskItem();
-            },
-          ),
+        StreamBuilder(
+          stream: FirebaseFunctions.getTasks(pro.selectDay),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            }
+            if (snapshot.hasError) {
+              return Center(child: Text("Error"));
+            }
+            List tasks =
+                snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
+            return Expanded(
+              child: ListView.builder(
+                itemCount: tasks.length,
+                itemBuilder: (context, index) {
+                  return TaskItem(
+                    taskModel: tasks[index],
+                  );
+                },
+              ),
+            );
+          },
         )
       ],
     );
